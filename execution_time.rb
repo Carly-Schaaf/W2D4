@@ -68,6 +68,94 @@ def lcss_phase2(array)
   end
   highest_sum
 end
-    
-    
-    
+
+# O(n!*n)
+def anagram?(str, str2)
+  perms = str.chars.permutation.map &:join
+  perms.include?(str2)
+end
+
+# O3n)
+def second_anagram?(str1, str2)
+  arr1 = str1.split("")
+  arr2 = str2.split("")
+  arr1.each do |ch|
+    if arr2.include?(ch)
+      idx2 = arr2.find_index(ch)
+    else
+      return false
+    end
+    arr2.delete_at(idx2)
+  end
+  arr2.empty?
+end
+
+# O(n**2)
+def third_anagram?(str1, str2)
+  str1.chars.sort == str2.chars.sort
+end
+  
+# O(n)?
+def fourth_anagram?(str1, str2)
+  one = Hash.new(0)
+  two = Hash.new(0)
+  str1.each_char do |el|
+    one[el] += 1
+  end
+  str2.each_char do |el2|
+    two[el2] += 1
+  end
+  
+  one == two
+end  
+
+# O(n)
+def bonus_anagram(str1, str2)
+  one = Hash.new(0)
+  str1.each_char do |el|
+    one[el] += 1
+  end
+  str2.each_char do |el2|
+    one[el2] += 1
+  end
+  
+  one.each do |k, v|
+    return false unless v % 2 == 0
+  end
+  true
+end
+
+
+# O(n^2)
+def brute_twosum(arr, target)
+  i = 0
+  while i < arr.length - 1 
+    j = i + 1
+    while j < arr.length
+      return true if arr[i] + arr[j] == target
+      j += 1
+    end
+    i += 1
+  end
+  false
+end
+
+def okay_two_sum?(arr, target)
+  until arr[-1]
+  arr.sort!
+  
+  mid = arr.length/2
+  left = arr[0...mid]
+  right = arr[mid..-1]
+  
+  
+  
+
+
+
+
+
+
+
+
+
